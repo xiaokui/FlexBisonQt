@@ -29,7 +29,7 @@
 CONFIG += console
 CONFIG -= app_bundle
 
-LIBS += -lfl -ly
+#LIBS += -lfl -ly
 
 FLEXSOURCES = lexer.l
 BISONSOURCES = parser.y
@@ -39,6 +39,10 @@ OTHER_FILES +=  \
     $$BISONSOURCES
 
 QT += core gui script
+
+#添加 win_flex 和 gnuwin32的路径
+INCLUDEPATH += "D:/win_flex" \
+               "C:/gunwin32/include" \
 
 SOURCES += main.cpp
 

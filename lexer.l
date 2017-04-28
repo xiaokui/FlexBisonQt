@@ -99,3 +99,10 @@ url      return TOK_URL;
 . // Unrecognized token.
 
 %%
+
+
+
+    int yywrap(void) {
+         return 1;
+         }
+
