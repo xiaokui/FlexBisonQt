@@ -31,12 +31,18 @@ CONFIG -= app_bundle
 
 #LIBS += -lfl -ly
 
-FLEXSOURCES = lexer.l
-BISONSOURCES = parser.y
+FLEXSOURCES = \
+               #lexer.l \
+               base.l \
+
+
+BISONSOURCES = \
+                #parser.y
 
 OTHER_FILES +=  \
     $$FLEXSOURCES \
-    $$BISONSOURCES
+    $$BISONSOURCES \
+
 
 QT += core gui script
 
