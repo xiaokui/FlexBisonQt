@@ -36,7 +36,7 @@
 
 #include "base.h"
 
-
+extern int count;
 
 int main(int argc, char *argv[])
 {
@@ -46,8 +46,10 @@ int main(int argc, char *argv[])
 
     yylex();
 
-    fclose(yyin);
+    printf("count = %d\n", count);
 
+
+    fclose(yyin);
 
     /*
     QString str("{'one': 1,"
