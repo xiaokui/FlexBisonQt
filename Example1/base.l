@@ -4,7 +4,13 @@ enum {
 
     LOOKUP = 0,
     VERB,
-    ADJ
+    ADJ,
+    ADV,
+    NOUN,
+    PREP,
+    PRON,
+    CONJ
+
 };
 
 int state;
@@ -21,6 +27,10 @@ int lookup_word(char *word);
 
 ^verb {state = VERB; }
 ^adj {state = ADJ; }
+^noun { state = NOUN; }
+^prep { state = PREP; }
+^pron { state = PRON; }
+^conj { state = CONJ; }
 
 [a-zA-Z]+   {
                 if (state != LOOKUP) {
@@ -29,6 +39,11 @@ int lookup_word(char *word);
                     switch(lookup_word(yytext)) {
                     case VERB: printf("%s: is verb\n", yytext); break;
                     case ADJ: printf("%s: is adjective\n", yytext); break;
+                    case ADV: printf("%s: adverb\n", yytext); break;
+                    case NOUN: printf("%s: noun\n", yytext); break;
+                    case PREP: printf("%s: preposition\n", yytext); break;
+                    case PRON: printf("%s: pronoun\n", yytext); break;
+                    case CONJ: printf("%s: conjunction\n", yytext); break;
                     default:
                         printf("%s: don't recongnize\n", yytext); break;
                     }
