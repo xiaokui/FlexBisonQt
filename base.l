@@ -10,15 +10,26 @@ letter [A-Za-z]
 
     int count;
 
+/*
+^(.*)\n printf("%4d\t%s", ++yylineno1, yytext);
+{letter}({letter}|{digit})*        count++;
+*/
+
+
 %}
-
-
 
 
 %%
 
-^(.*)\n printf("%4d\t%s", ++yylineno1, yytext);
-{letter}({letter}|{digit})*        count++;
+[\t ]+  ;
+is |
+am |
+go { printf("%s: is a verb \n", yytext); }
+[a-zA-Z]+ { printf("%s: is not a verb \n", yytext); }
+
+.|\n { ECHO; }
+
+
 
 %%
 
