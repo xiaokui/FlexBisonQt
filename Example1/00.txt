@@ -1,8 +1,13 @@
-verb is
-adj their my your his her its
-
-this is a hello world.
-test data
-his name is world.
+verb is am are was were be being been do is
+verb chew eat lick
+noun dog cat horse cow
+verb talk
+dog eat cat.
+is ss.
+dog run.
+chew eat sleep cow horse.
+talk.
+this is demo.
+dog eat cat.
 
 

@@ -1,17 +1,9 @@
 %{
 
-enum {
+#include "parser.h"
 
-    LOOKUP = 0,
-    VERB,
-    ADJ,
-    ADV,
-    NOUN,
-    PREP,
-    PRON,
-    CONJ
 
-};
+    #define   LOOKUP 0
 
 int state;
 
@@ -25,31 +17,47 @@ int lookup_word(char *word);
 
 \n { state = LOOKUP; }
 
-^verb {state = VERB; }
-^adj {state = ADJ; }
-^noun { state = NOUN; }
-^prep { state = PREP; }
-^pron { state = PRON; }
-^conj { state = CONJ; }
+\.\n  {
+            state = LOOKUP;
+            return 0;  /* end of sentence */
+      }
 
-[a-zA-Z]+   {
+
+^verb {state = VERB; }
+^adj {state = ADJECTIVE; }
+^noun { state = NOUN; }
+^prep { state = PREPOSITION; }
+^pron { state = PRONOUN; }
+^conj { state = CONJUNCTION; }
+
+[a-zA-Z]+  {
                 if (state != LOOKUP) {
                     add_word(state, yytext);
                 } else {
                     switch(lookup_word(yytext)) {
-                    case VERB: printf("%s: is verb\n", yytext); break;
-                    case ADJ: printf("%s: is adjective\n", yytext); break;
-                    case ADV: printf("%s: adverb\n", yytext); break;
-                    case NOUN: printf("%s: noun\n", yytext); break;
-                    case PREP: printf("%s: preposition\n", yytext); break;
-                    case PRON: printf("%s: pronoun\n", yytext); break;
-                    case CONJ: printf("%s: conjunction\n", yytext); break;
+                    case VERB:
+                        //printf("%s: is verb\n", yytext);
+                        return (VERB);
+                    case ADJECTIVE:
+                        return (ADJECTIVE);
+                    case ADVERB:
+                        return (ADVERB);
+                    case NOUN:
+                        //printf("%s: is noun\n", yytext);
+                        return (NOUN);
+                    case PREPOSITION:
+                        return (PREPOSITION);
+                    case PRONOUN:
+                        return (PRONOUN);
+                    case CONJUNCTION:
+                        return (CONJUNCTION);
                     default:
                         printf("%s: don't recongnize\n", yytext); break;
                     }
                 }
             }
-. /* ignore anything else. */
+. ;
+
 %%
 
 
@@ -77,7 +85,7 @@ int add_word(int type, char *word)
 
     if (lookup_word(word) != LOOKUP)
     {
-        add_word(state, yytext);
+        printf("!!! warning: word %s already defined \n", word);
         return 0;
     }
 
