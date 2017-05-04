@@ -7,9 +7,13 @@
 
 [\n\t ] ;
 
--?(([0-9]+)|([0-9]+)\.[0-9]+) { printf("number \n"); }
+-?(([0-9]+)|([0-9]+)\.[0-9]+) { printf("%s: is number \n", yytext); }
 
-. ECHO;
+#.* { printf("%s: is comment \n", yytext);}
+
+\*[^*\n]*[*\n] { printf("%s: is quoted string \n", yytext);}
+
+. ;
 
 %%
 
