@@ -1,13 +1,4 @@
-verb is am are was were be being been do is
-verb chew eat lick
-noun dog cat horse cow
-verb talk
-dog eat cat.
-is ss.
-dog run.
-chew eat sleep cow horse.
-talk.
-this is demo.
-dog eat cat.
-
+123
+45.6
+my age is 35 page
 

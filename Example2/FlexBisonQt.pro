@@ -3,15 +3,14 @@
 CONFIG += console
 CONFIG -= app_bundle
 
-#LIBS += -lfl -ly
-
 FLEXSOURCES = \
-               #lexer.l \
-               base.l \
+               lexer.l \
+               #base.l \
 
 
 BISONSOURCES = \
-                parser.y \
+                #parser.y \
+
 
 OTHER_FILES +=  \
     $$FLEXSOURCES \
